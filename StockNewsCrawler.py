@@ -29,10 +29,9 @@ driver.get(url)
 sourceCode = driver.page_source
 soup = bs(sourceCode, "html.parser")
 
-mostActive = soup.find("tbody", {"class": "most-active__body"}).find_all(
-    "tr", class_="most-active__row"
-)
 StockList = []
 
-for Actives in mostActive:
-    Stock = Actives.find_all("a", class_="firstCell")
+for Actives in soup.find("tbody", {"class": "most-active__body"}).find_all(
+    "a", class_="firstCell"
+):
+    print(Actives.find("a", class_="firstCell").text)
