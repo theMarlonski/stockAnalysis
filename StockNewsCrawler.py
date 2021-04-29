@@ -31,7 +31,16 @@ soup = bs(sourceCode, "html.parser")
 
 StockList = []
 
-for Actives in soup.find("tbody", {"class": "most-active__body"}).find_all(
+for Active in soup.find("tbody", {"class": "most-active__body"}).find_all(
     "a", class_="firstCell"
 ):
-    print(Actives.find("a", class_="firstCell").text)
+    StockList.append(Active.text)
+
+
+TickerList = StockList[::2]
+NameList = [x for x in StockList if x not in TickerList]
+
+dfStock = pd.DataFrame(columns=["Ticker", "Name"])
+dfStock["Ticker"] = TickerList
+dfStock["Name"] = NameList
+dfStock.reset_index(drop=True)
