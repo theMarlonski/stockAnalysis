@@ -7,8 +7,10 @@ from bs4 import BeautifulSoup as bs
 from selenium import webdriver
 import re
 import numpy as np
+
 import warnings
 import itertools
+
 
 option = webdriver.ChromeOptions()
 option.add_argument("--no-sandbox")
